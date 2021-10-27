@@ -1,15 +1,15 @@
 # Deno manual
 
-This repository is the official documentation for Deno.
+Этот репозиторий является официальной документацией Deno.
 
-Manual is available at: https://deno.land/manual
+Документация доступна на: https://deno.land/manual
 
 ## Contributing
 
-When opening a PR, make sure the code is formatted correctly. To format the
-code:
+Открывая PR, убедитесь что код отформатирован правильно. Для форматирования
+кода:
 
-1. Install Deno (https://deno.land/#installation)
-2. Run `deno fmt` at the root of this repository
+1. Установите Deno (https://deno.land/#installation)
+2. Запустите `deno fmt` из корневой папки этого реппозитория
 
-Before creating new pages, open an issue and discuss the proposed changes.
+Перед созданием новых страниц, откройте issue и discuss предполагаемых изменений.
