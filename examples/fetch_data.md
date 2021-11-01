@@ -2,27 +2,26 @@
 
 ## Concepts
 
-- Like browsers, Deno implements web standard APIs such as
+- Как браузеры, Deno реализует API web стандартов такие как
   [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
-- Deno is secure by default, meaning explicit permission must be granted to
-  access the network.
-- See also: Deno's [permissions](../getting_started/permissions.md) model.
+- Deno безопасен по-умолчанию, это означает, что для доступа к сети
+ должно быть предоставлено явное разрешение.
+- Смю также: модель Deno [разрешений](../getting_started/permissions.md).
 
-## Overview
+## Обзор
 
-When building any sort of web application developers will usually need to
-retrieve data from somewhere else on the web. This works no differently in Deno
-than in any other JavaScript application, just call the `fetch()` method. For
-more information on fetch read the
+При создании любого типа веб-приложений разработчикам обычно требуется получать
+данные откуда-нибудь в Интернете. В Deno это работает не иначе чем в любом другом
+приложении JavaScript, просто вызовите метод `fetch ()`. 
+Больше информации о fetch читайте в
 [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
-The exception with Deno occurs when running a script which makes a call over the
-web. Deno is secure by default which means access to IO (Input / Output) is
-prohibited. To make a call over the web Deno must be explicitly told it is ok to
-do so. This is achieved by adding the `--allow-net` flag to the `deno run`
-command.
+Исключение с Deno возникает при запуске сценария, который выполняет вызов через
+Интернет. Deno по умолчанию безопасен, что означает, что доступ к IO (вводу/выводу)
+запрещен. Чтобы вызывать через Интернет, Deno нужно прямо сказать, что это можно делать.
+Это достигается добавлением флага `--allow-net` к строке` node run`.
 
-## Example
+## Пример
 
 **Command:** `deno run --allow-net fetch.ts`
 
