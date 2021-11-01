@@ -1,76 +1,70 @@
-# Introduction
+# Вступление
 
 Deno ([/ˈdiːnoʊ/](http://ipa-reader.xyz/?text=%CB%88di%CB%90no%CA%8A),
-pronounced `dee-no`) is a JavaScript/TypeScript runtime with secure defaults and
-a great developer experience.
+произносится `дии-нo`) это JavaScript/TypeScript рантайм с дефолтной секьюрностью и
+отличным опытом разработчика.
 
-It's built on V8, Rust, and Tokio.
+Он построен на V8, Rust, и Tokio.
 
-## Feature highlights
+## Основные характеристики
 
-- Web compatible where possible, for example through usage of ES modules, and
-  support for `fetch`.
-- Secure by default. No file, network, or environment access (unless explicitly
-  enabled).
-- Supports TypeScript out of the box.
-- Ships a single executable (`deno`).
-- Has built-in utilities like a code formatter (`deno fmt`), a linter
-  (`deno lint`), and a test runner (`deno test`).
-- Has
-  [a set of reviewed (audited) standard
-  library](https://github.com/denoland/deno_std) that are guaranteed to work
-  with Deno.
-- Can bundle scripts into a single JavaScript file.
+- Web совместимость везде, где это возможно, напрмер через использование ES модулей, и
+  поддержка `fetch`.
+- Безопасность по-умолчанию. Ни файловая система ни сеть ни окружение не доступны (без явного разрешения).
+- Поддержка TypeScript из коробки.
+- Поставляется как единичный файл (`deno`).
+- Имеет встроенные утилиты например форматтер кода (`deno fmt`), линтер
+  (`deno lint`), и стартер тестов (`deno test`).
+- Имеет
+  [набор проверяемых (аудируемых) стандартных библиотек
+  ](https://github.com/denoland/deno_std) которые гарантированно работают
+  с Deno.
+- Может собирать скрипты в единый JavaScript файл.
 
-## Philosophy
+## Философия
 
-Deno aims to be a productive and secure scripting environment for the modern
-programmer.
+Deno стремится быть производительной и безопасной средой написания сценариев для
+современного программиста.
 
-Deno will always be distributed as a single executable. Given a URL to a Deno
-program, it is runnable with nothing more than
-[the ~25 megabyte zipped executable](https://github.com/denoland/deno/releases).
-Deno explicitly takes on the role of both runtime and package manager. It uses a
-standard browser-compatible protocol for loading modules: URLs.
+Deno всегда будет распространяться как единый исполняемый файл. Учитывая URL-адрес
+программы Deno, она запускается только с
+[~25 мегабайтным zipped исполняемым](https://github.com/denoland/deno/releases).
+Deno явно берет на себя роль как среды выполнения, так и диспетчера пакетов. 
+Он использует стандартный протокол, совместимый с браузером, для загрузки модулей: URLs.
 
-Among other things, Deno is a great replacement for utility scripts that may
-have been historically written with Bash or Python.
+Помимо прочего, Deno - отличная замена служебным скриптам,
+которые исторически могли быть написаны на Bash или Python..
 
-## Goals
+## Цели
 
-- Ship as just a single executable (`deno`).
-- Provide secure defaults.
-  - Unless specifically allowed, scripts can't access files, the environment, or
-    the network.
-- Be browser-compatible.
-  - The subset of Deno programs which are written completely in JavaScript and
-    do not use the global `Deno` namespace (or feature test for it), ought to
-    also be able to be run in a modern web browser without change.
-- Provide built-in tooling to improve developer experience.
-  - E.g. unit testing, code formatting, and linting.
-- Keep V8 concepts out of user land.
-- Serve HTTP efficiently.
+- Поставка единственным исполняемым файлом (`deno`).
+- Дефолтная безопасность.
+  - Если специально не разрешено, сценарии не могут получить доступ к файлам, среде или сети.
+- Быть совместимым с браузером.
+  - Подмножество программ Deno, которые полностью написаны на JavaScript и не используют
+глобальное пространство имен `Deno` (или функциональный тест для него), также должны иметь 
+возможность запускаться в современном веб-браузере без изменений.
+- Предоставить встроенные инструменты для улучшения опыта разработчиков.
+  - unit testing, code formatting, и linting.
+- Держать концепции V8 подальше от пользователей.
+- Эффективное обслуживание HTTP.
 
-## Comparison to Node.js
+## Сравнение с Node.js
 
-- Deno does not use `npm`.
-  - It uses modules referenced as URLs or file paths.
-- Deno does not use `package.json` in its module resolution algorithm.
-- All async actions in Deno return a promise. Thus Deno provides different APIs
-  than Node.
-- Deno requires explicit permissions for file, network, and environment access.
-- Deno always dies on uncaught errors.
-- Deno uses "ES Modules" and does not support `require()`. Third party modules
-  are imported via URLs:
+- Deno не использует `npm`.
+  - Он использует модули, указанные как URL-адреса или пути к файлам.
+- Deno не использует `package.json` в своем модульном алгоритме разрешения.
+- Все асинхронные действия в Deno возвращают промис. Таким образом, Deno предоставляет API, 
+отличные от Node.
+- Deno требует явных разрешений для доступа к файлам, сети и среде.
+- Deno всегда умирает из-за неперехваченных ошибок.
+- Deno использует "ES Modules" и не поддерживает`require()`. Сторонние модули импортируются через URLs:
 
   ```javascript
   import * as log from "https://deno.land/std@$STD_VERSION/log/mod.ts";
   ```
 
-## Other key behaviors
+## Другое ключевое поведение
 
-- Fetch and cache remote code upon first execution, and never update it until
-  the code is run with the `--reload` flag. (So, this will still work on an
-  airplane.)
-- Modules/files loaded from remote URLs are intended to be immutable and
-  cacheable.
+- Получает и кэширует удаленный код при первом выполнении и никогда не обновлять его, пока код не будет запущен с флагом `--reload`. (Так что, это все будет работать и на самолете.)
+- Модули/файлы, загружаемые с удаленных URL-адресов, должны быть неизменяемыми и кэшируемыми.
