@@ -1,7 +1,7 @@
 # Examples
 
-In this chapter you can find some example programs that you can use to learn
-more about the runtime.
+В этой главе вы можете найти несколько примеров программ, которые можно использовать,
+чтобы узнать больше о среде выполнения.
 
 ## Basic
 
